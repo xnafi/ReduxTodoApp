@@ -1,15 +1,16 @@
 /* eslint-disable no-undef */
 /* eslint-disable array-callback-return */
 /* eslint-disable no-unused-vars */
+import initialState from "../Todos/InitialState";
 import { ADDED, ALLCOMPLETED, CLEARCOMPLETED, COLOURSELECTED, DELETED, TOGGLED } from "./ActionTypes";
-import { initialState } from "./InitialState";
+
 
 const maxTodoId = (todos) => {
     const maxId = todos.reduce((maxId, todo) => Math.max(todo.id, maxId), - 1)
     return maxId + 1
 }
 
-const Reduce = (state = initialState, action) => {
+const Reducer = (state = initialState, action) => {
     switch (action.type) {
         case ADDED:
             return [
@@ -46,7 +47,7 @@ const Reduce = (state = initialState, action) => {
 
         case DELETED:
 
-            return state.filter(todo => todo.id !== action.todoId)
+            return state.filter(todo => todo.id !== action.payload)
 
         case ALLCOMPLETED:
 
@@ -64,8 +65,8 @@ const Reduce = (state = initialState, action) => {
 
 
         default:
-            break;
+            return state;
     }
 }
 
-export default Reduce
+export default Reducer
