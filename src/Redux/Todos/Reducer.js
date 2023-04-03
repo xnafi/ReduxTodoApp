@@ -17,6 +17,7 @@ const Reducer = (state = initialState, action) => {
                 ...state,
                 {
                     id: maxTodoId(state),
+                    text: action.payload
                 }
             ]
 
